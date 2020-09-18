@@ -13,9 +13,7 @@ public class Producto implements Serializable {
     @GeneratedValue(generator = "Producto_id_producto_seq")
 	
 	@Column(name="id_producto")
-	private Integer id_producto;
-
-	private Integer id_proveedor;
+	private Integer idProducto;
 
 	private String nombre;
 
@@ -42,20 +40,14 @@ public class Producto implements Serializable {
 		this.proveedor = proveedor;
 	}
 
-	public Integer getId_producto() {
-		return id_producto;
+
+
+	public Integer getIdProducto() {
+		return idProducto;
 	}
 
-	public void setId_producto(Integer id_producto) {
-		this.id_producto = id_producto;
-	}
-
-	public Integer getId_proveedor() {
-		return id_proveedor;
-	}
-
-	public void setId_proveedor(Integer id_proveedor) {
-		this.id_proveedor = id_proveedor;
+	public void setIdProducto(Integer idProducto) {
+		this.idProducto = idProducto;
 	}
 
 	public String getNombre() {
