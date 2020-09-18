@@ -37,14 +37,7 @@ public class TaskBC {
 	
 	public List<Task> getWithFilter(String filter) {
 		return dao.findWithFilter(filter);
-	}	
+	}
 	
-	public List<Task> getTaskByType(Integer id) {
-		return dao.getTaskByType(id);
-	}	
-
-	public List<Task> getPaginatedTasks(Integer page, Integer size) {
-		return dao.getPaginatedTasks(page, size);
-	}	
 }
 

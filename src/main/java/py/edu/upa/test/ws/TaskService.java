@@ -115,44 +115,6 @@ public class TaskService {
 		}
     }
 	
-  //Ayuda para Services
-  //Ejemplo método getTaskByType
-
-  /**
-  * Obtener task´s por id_type (de type)
-  * @param id_type
-  * @return
-  */
-//  	http:localhost:8080/rest/task?id_type=1
-  @GET
-  @Path("/bytype")
-  @Produces({"application/json"})
-  public Response getByType (@QueryParam("id_type") Integer id_type) {
-  try {
-  	return Response.ok().entity(bc.getTaskByType(id_type)).build();
-  	} catch (Exception e) {
-  		e.printStackTrace();
-  		return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-  				.entity("ERROR_GENERICO")
-  				.build();
-  }
-  	}	
-  
-//Ejemplo método getPaginatedTask
-
-//	http:localhost:8080/rest/task/pagitation?page=2&size=1
-@GET
-@Path("/pagination")
-@Produces({"application/json"})
-public Response getWithPagination (@QueryParam("page") Integer page, @QueryParam("size") Integer size) {
-try {
-	return Response.ok().entity(bc.getPaginatedTasks(page, size)).build();
-	} catch (Exception e) {
-		e.printStackTrace();
-		return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-				.entity("ERROR_GENERICO")
-				.build();
-	}
-}
+	
 
 }

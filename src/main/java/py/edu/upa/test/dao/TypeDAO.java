@@ -23,7 +23,12 @@ public class TypeDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Type.class);
 		
-		criteria.add(Restrictions.ilike("description", filter));
+		criteria.add(Restrictions.and(
+				Restrictions.ilike("description", filter),
+				Restrictions.or(
+						Restrictions.eq("deleted", false),
+						Restrictions.isNull("deleted")
+				)));
 		
 		return criteria.list();
 
@@ -34,6 +39,10 @@ public class TypeDAO {
 
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Type.class);
+		
+		criteria.add(Restrictions.or(
+				Restrictions.eq("deleted", false),
+				Restrictions.isNull("deleted")));
 		
 		return criteria.list();
 
@@ -64,6 +73,6 @@ public class TypeDAO {
 	
 	public void delete(Integer id){
 		Type t = findById(id);
-		entityManager.remove(t);
+		entityManager.merge(t);
 	}
 }

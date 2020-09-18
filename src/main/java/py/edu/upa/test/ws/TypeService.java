@@ -10,6 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import py.edu.upa.test.business.TypeBC;
@@ -22,7 +23,7 @@ public class TypeService {
 	@Inject
 	private TypeBC bc;
 
-//  http://localhost:8080/rest/types
+//  http://localhost:8080/rest/tasks
 	@GET
     @Produces("application/json")
 	public Response getAll() {
@@ -36,7 +37,7 @@ public class TypeService {
 		}
 	}
 	
-//  http://localhost:8080/rest/types
+//  http://localhost:8080/rest/tasks
 	@POST
     @Consumes({"application/json"})
     @Produces({"application/json"})
@@ -52,7 +53,7 @@ public class TypeService {
 		}
 	}
 
-//	http://localhost:8080/rest/types/1
+//	http://localhost:8080/rest/tasks/1
     @GET
     @Path("/{id: \\d+}")
     @Produces({"application/json"})
@@ -67,7 +68,7 @@ public class TypeService {
 		}
     }
 
-//    http://localhost:8080/rest/types/1
+//    http://localhost:8080/rest/tasks/1
     @PUT
     @Path("/{id: \\d+}")
     @Consumes({"application/json"})
@@ -91,6 +92,21 @@ public class TypeService {
     	try {
     		bc.delete(id);
 			return Response.ok().entity("OK").build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity("ERROR_GENERICO")
+					.build();
+		}
+    }
+    
+//    http://localhost:8080/rest/tasks/prueba?filter=xx
+    @GET
+    @Path("/pruebas")
+    @Produces({"application/json"})
+    public Response update(@QueryParam("filter") String filter) {
+    	try {
+			return Response.ok().entity(bc.getWithFilter(filter)).build();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)

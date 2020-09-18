@@ -31,25 +31,8 @@ public class Task implements Serializable {
 	@Column(name="update_date")
 	private Timestamp updateDate;
 
-	@ManyToOne
-	@JoinColumn(name="id_type")
-	private Type type;
-	
 	public Task() {
 	}
-
-
-	public Type getType() {
-		return type;
-	}
-
-
-
-	public void setType(Type type) {
-		this.type = type;
-	}
-
-
 
 	public Integer getId() {
 		return this.id;
@@ -114,5 +97,15 @@ public class Task implements Serializable {
 	public void setUpdateDate(Timestamp updateDate) {
 		this.updateDate = updateDate;
 	}
+	@ManyToOne
+	@JoinColumn(name="id_type")
+	Type type;
 
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
 }

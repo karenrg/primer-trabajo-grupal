@@ -80,55 +80,43 @@ public class TaskDAO {
 		t.setDeleted(true);
 		entityManager.merge(t);
 	}
-
-	@SuppressWarnings("unchecked")
-	public List<Task> getTaskByType(Integer id) {
-
+	public List<Task> getTaskByType(Integer id_type) {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Task.class);
 		
-		criteria.createAlias("type", "type");
-		
+		criteria.createAlias("type","type");
 		criteria.add(Restrictions.and(
-				Restrictions.eq("type.id", id),
+				Restrictions.eq("type.id", id_type),
 				Restrictions.or(
-						Restrictions.eq("deleted", false),
-						Restrictions.isNull("deleted"))));
-		
-		return (List<Task>) criteria.list();
-	}
-
-//		http:localhost:8080/rest/task/pagitation?page=2&size=1
-	//Ejemplo método getPaginateTask
-	/**
-	*Obtener lista de tareascon paginación
-	*@param id_type
-	*@return lista de tareas
-	*/
-	@SuppressWarnings("unchecked")
-	public List <Task> getPaginatedTasks(Integer page, Integer size) {
-		
-		//calcular el inicio de la pagina
-		int registroInicio = 0;
-		registroInicio = (page - 1) * size;
-
-		Session session = (Session) entityManager.getDelegate();
-			Criteria criteria = session.createCriteria(Task.class);
-
-		criteria.add(
-					Restrictions.or(
-							Restrictions.eq("deleted", false),
-							Restrictions.isNull("deleted")
-									)
-						);
-		//se asigna el registro de inicio
-		criteria.setFirstResult(registroInicio);
-
-		//se asigna el tamaño de la pag
-		criteria.setMaxResults(size);
-
-		//retorna la lista
+								Restrictions.eq("deleted", false),
+								Restrictions.isNull("deleted")
+								)
+										)
+				);
 		return criteria.list();
 	}
+	public List<Task> findWithPagination (Integer page, Integer size){
+		 //calcular el inicio de la página
+		int registroInicio = 0;
+		registroInicio = (page - 1) * size;
+		
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Task.class);
+		
+		criteria.add(
+				Restrictions.or(
+								Restrictions.eq("deleted", false),
+								Restrictions.isNull("deleted")
+								));
+		//se asigna el registro de inicio
+		criteria.setFirstResult(registroInicio);
+		
+		//se asigna el tamaño de la página 
+		criteria.setMaxResults(size);
+		
+		//retorna la lista
+		return criteria.list(); 
+	}
+		
 
 }

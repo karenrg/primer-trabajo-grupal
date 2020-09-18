@@ -4,27 +4,22 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Entity
+@Entity 
 @Table(name="type", schema="public")
-public class Type implements Serializable{
-	
+public class Type implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
     @SequenceGenerator(name = "type_id_seq", sequenceName = "type_id_seq", allocationSize = 1, schema= "public")
     @GeneratedValue(generator = "type_id_seq")
 	private Integer id;
-	
+
 	@Column(name="creation_date")
 	private Timestamp creationDate;
 
 	private String description;
-
-	private String name;
-
-	public Type () {
 	
-	}
+	private String name;
 
 	public Integer getId() {
 		return id;
@@ -57,6 +52,4 @@ public class Type implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 }
