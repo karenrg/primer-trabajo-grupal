@@ -18,6 +18,24 @@ public class Proveedor implements Serializable {
 	private Integer ruc;
 
 	private Integer telefono;
+	
+	private String nombre;
+
+	public Integer getIdProveedor() {
+		return idProveedor;
+	}
+
+	public void setIdProveedor(Integer idProveedor) {
+		this.idProveedor = idProveedor;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
 	public Proveedor() {
 	}
