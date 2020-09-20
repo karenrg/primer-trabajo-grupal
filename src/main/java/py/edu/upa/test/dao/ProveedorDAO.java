@@ -1,4 +1,4 @@
-package py.edu.upa.test.dao;
+package py.edu.upa.test.DAO;
 
 import java.util.List;
 
@@ -17,22 +17,22 @@ public class ProveedorDAO {
 	@PersistenceContext
 	EntityManager entityManager;
 	
-	@SuppressWarnings("unchecked")
-	public List<Proveedor> findWithFilter(String filter) {
+//	@SuppressWarnings("unchecked")
+//	public List<Proveedor> findWithFilter(String filter) {
+//
+//		Session session = (Session) entityManager.getDelegate();
+//		Criteria criteria = session.createCriteria(Proveedor.class);
+//		
+//		criteria.add(Restrictions.and(
+//				Restrictions.ilike("description", filter),
+//				Restrictions.or(
+//						Restrictions.eq("deleted", false),
+//						Restrictions.isNull("deleted")
+//				)));
+//		
+//		return criteria.list();
 
-		Session session = (Session) entityManager.getDelegate();
-		Criteria criteria = session.createCriteria(Proveedor.class);
-		
-		criteria.add(Restrictions.and(
-				Restrictions.ilike("description", filter),
-				Restrictions.or(
-						Restrictions.eq("deleted", false),
-						Restrictions.isNull("deleted")
-				)));
-		
-		return criteria.list();
-
-	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public List<Proveedor> find() {
@@ -75,4 +75,19 @@ public class ProveedorDAO {
 		Proveedor t = findById(id);
 		entityManager.merge(t);
 	}
-}
+
+	public List<Proveedor> getProveedorByProducto(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Proveedor> findWithFilter(String filter) {
+
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Proveedor.class);
+		
+		criteria.add(Restrictions.ilike("description", filter));
+		
+		return criteria.list();
+	}
+	}

@@ -90,4 +90,10 @@ public class Producto implements Serializable {
 		this.favorito = favorito;
 	}
 
+	public boolean getFavorito() {
+		// TODO Auto-generated method stub
+		return false;
+
+	}
+
 }
