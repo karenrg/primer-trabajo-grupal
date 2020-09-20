@@ -1,5 +1,51 @@
 package py.edu.upa.test.business;
 
-public class ProductoBC {
+import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
+import py.edu.upa.test.DAO.ProductoDAO;
+import py.edu.upa.test.entity.Producto;
+
+
+@Stateless
+public class ProductoBC {
+	
+    @Inject
+	private ProductoDAO dao;
+	
+
+	public List<Producto> find() {
+		return dao.find();
+	}
+	
+	public Producto findById(Integer id) {
+		return dao.findById(id);
+	}
+	
+	public void insert(Producto t){
+		dao.insert(t);
+	}
+	
+	public void update(Integer id, Producto t){
+		dao.update(id, t);
+	}
+	
+	public void delete(Integer id){
+		dao.delete(id);
+	}
+	
+	public List<Producto> getWithFilter(String filter) {
+		return dao.findWithFilter(filter);
+	}
+	//obtener tarea por tipo
+	public List<Producto> getProductoByProveedor(Integer id) {
+		return dao.getProductoByProveedor(id);
+	}
+	//Paginación
+		public List<Producto> getPaginatedTasks(Integer page, Integer size){
+			return dao.findWithPagination(page, size);	
 }
+}
+

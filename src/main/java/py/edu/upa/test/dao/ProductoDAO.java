@@ -60,20 +60,20 @@ public class ProductoDAO {
 		return (Producto) criteria.uniqueResult();
 
 	}
-	@SuppressWarnings("unchecked")
-	public List<Producto> getProductoByProveedor(Integer idProveedor) {
-	Session session = (Session) entityManager.getDelegate();
-	Criteria criteria = session.createCriteria(Producto.class);
-	criteria.createAlias("proveedor", "proveedor");
-	criteria.add(Restrictions.and(
-    Restrictions.eq("proveedor.id_proveedor", idProveedor),
-	Restrictions.or(
-	Restrictions.eq("deleted", false),
-	Restrictions.isNull("deleted")
-	)));
-	return criteria.list();
-	}
-	
+//	@SuppressWarnings("unchecked")
+//	public List<Producto> getProductoByProveedor(Integer idProveedor) {
+//	Session session = (Session) entityManager.getDelegate();
+//	Criteria criteria = session.createCriteria(Producto.class);
+//	criteria.createAlias("proveedor", "proveedor");
+//	criteria.add(Restrictions.and(
+//    Restrictions.eq("proveedor.id_proveedor", idProveedor),
+//	Restrictions.or(
+//	Restrictions.eq("deleted", false),
+//	Restrictions.isNull("deleted")
+//	)));
+//	return criteria.list();
+//	}
+//	
 	public void insert(Producto t){
 		entityManager.persist(t);
 	}
@@ -97,7 +97,8 @@ public class ProductoDAO {
 	
 //	Obtener tarea por tipo
 	//List<Task>Por tareas filtradas por tipo
-	public List<Producto> getTaskByType1(Integer id) {
+	@SuppressWarnings("unchecked")
+	public List<Producto> getProductoByProveedor(Integer id) {
 
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Producto.class);
@@ -120,6 +121,10 @@ public class ProductoDAO {
 	 * @return lista de tareas
 	 */
 	
+	public void delete(Integer id){
+		Producto t = findById(id);
+		entityManager.remove(t);
+	}
 	@SuppressWarnings("unchecked")
 	public List<Producto> findWithPagination(Integer page, Integer size) {
 		
@@ -142,10 +147,5 @@ public class ProductoDAO {
 		//Retornar lista
 		return criteria.list();
 
-	}
-
-	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
 	}
 }
