@@ -135,10 +135,6 @@ public class ProductoDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Producto.class);
 				
-		criteria.add(
-				Restrictions.or(
-						Restrictions.eq("deleted", false),
-						Restrictions.isNull("deleted")));
 		
 		//Asignar Registro de inicio
 		criteria.setFirstResult(registroInicio);
