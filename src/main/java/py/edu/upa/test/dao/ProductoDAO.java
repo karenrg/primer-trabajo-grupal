@@ -25,11 +25,11 @@ public class ProductoDAO {
 		Criteria criteria = session.createCriteria(Producto.class);
 		
 		criteria.add(Restrictions.and(
-				Restrictions.ilike("description", filter),
-				Restrictions.or(
-						Restrictions.eq("deleted", false),
-						Restrictions.isNull("deleted")
-				)));
+				Restrictions.ilike("description", filter)
+//				Restrictions.or(
+//						Restrictions.eq("deleted", false),
+//						Restrictions.isNull("deleted")
+				));
 		
 		return criteria.list();
 
@@ -41,9 +41,9 @@ public class ProductoDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Producto.class);
 		
-		criteria.add(Restrictions.or(
-				Restrictions.eq("deleted", false),
-				Restrictions.isNull("deleted")));
+//		criteria.add(Restrictions.or(
+//				Restrictions.eq("deleted", false),
+//				Restrictions.isNull("deleted")));
 		
 		return criteria.list();
 
@@ -82,17 +82,11 @@ public class ProductoDAO {
 		Producto t = findById(id_producto);
 		t.setNombre(producto.getNombre());
 		t.setPrecio(producto.getPrecio());
-		//t.setDeleted(producto.getDeleted());
 		t.setDescripcion(producto.getDescripcion());
 		t.setStock(producto.getStock());
 		t.setFavorito(producto.getFavorito());
 		entityManager.merge(t);
 	}
-	
-//	public void delete(Integer id){
-//		Task t = findById(id);
-//		t.setDeleted(true);
-//		entityManager.merge(t);
 	
 	
 //	Obtener tarea por tipo
@@ -106,10 +100,11 @@ public class ProductoDAO {
 		criteria.createAlias("proveedor", "proveedor");
 		
 		criteria.add(Restrictions.and(
-				Restrictions.eq("proveedor.id_proveedor", id),
-				Restrictions.or(
-						Restrictions.eq("deleted", false),
-						Restrictions.isNull("deleted"))));
+				Restrictions.eq("proveedor.id_proveedor", id)));
+//				Restrictions.or(
+//						Restrictions.eq("deleted", false),
+//						Restrictions.isNull("deleted")))
+
 		
 		return (List<Producto>) criteria.list();
 	}

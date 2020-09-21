@@ -42,10 +42,10 @@ public class ProveedorDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Proveedor.class);
 		
-		criteria.add(Restrictions.or(
-				Restrictions.eq("deleted", false),
-				Restrictions.isNull("deleted")));
-		
+//		criteria.add(Restrictions.or(
+//				Restrictions.eq("deleted", false),
+//				Restrictions.isNull("deleted")));
+//		
 		return criteria.list();
 
 	}
@@ -55,7 +55,7 @@ public class ProveedorDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Proveedor.class);
 		
-		criteria.add(Restrictions.eq("id", idProveedor));
+		criteria.add(Restrictions.eq("id_proveedor", idProveedor));
 		
 		return (Proveedor) criteria.uniqueResult();
 
@@ -78,10 +78,7 @@ public class ProveedorDAO {
 		entityManager.merge(t);
 	}
 
-	public List<Proveedor> getProveedorByProducto(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	@SuppressWarnings("unchecked")
 	public List<Proveedor> findWithFilter(String filter) {
 
@@ -93,27 +90,27 @@ public class ProveedorDAO {
 		return criteria.list();
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Proveedor> findWithPagination(Integer page, Integer size) {
-		
-		//Calcular inicio
-		int registroInicio = 0;
-		registroInicio = (page - 1)* size;		
-
-		Session session = (Session) entityManager.getDelegate();
-		Criteria criteria = session.createCriteria(Proveedor.class);
-				
-		criteria.add(
-				Restrictions.or(
-						Restrictions.eq("deleted", false),
-						Restrictions.isNull("deleted")));
-		
-		//Asignar Registro de inicio
-		criteria.setFirstResult(registroInicio);
-		//Asignar Tamaño de Página
-		criteria.setMaxResults(size);
-		//Retornar lista
-		return criteria.list();
-	}
+//	@SuppressWarnings("unchecked")
+//	public List<Proveedor> findWithPagination(Integer page, Integer size) {
+//		
+//		//Calcular inicio
+//		int registroInicio = 0;
+//		registroInicio = (page - 1)* size;		
+//
+//		Session session = (Session) entityManager.getDelegate();
+//		Criteria criteria = session.createCriteria(Proveedor.class);
+//				
+////		criteria.add(
+////				Restrictions.or(
+////						Restrictions.eq("deleted", false),
+////						Restrictions.isNull("deleted")));
+//		
+//		//Asignar Registro de inicio
+//		criteria.setFirstResult(registroInicio);
+//		//Asignar Tamaño de Página
+//		criteria.setMaxResults(size);
+//		//Retornar lista
+//		return criteria.list();
+//	}
 
 	}

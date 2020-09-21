@@ -38,15 +38,9 @@ public class ProveedorBC {
 	
 	public List<Proveedor> getWithFilter(String filter) {
 		return dao.findWithFilter(filter);
+
 	}
-	//obtener tarea por tipo
-	public List<Proveedor> getProveedorByProducto(Integer id) {
-		return dao.getProveedorByProducto(id);
-	}
-	//Paginación
-		public List<Proveedor> getPaginatedProveedor(Integer page, Integer size){
-			return dao.findWithPagination(page, size);	
-}
+
 }
 
 

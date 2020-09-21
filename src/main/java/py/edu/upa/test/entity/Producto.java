@@ -32,6 +32,17 @@ public class Producto implements Serializable {
 	@JoinColumn(name="id_proveedor")
 	Proveedor proveedor;
 
+//	public boolean getFavorito() {
+//		return favorito;
+//	}
+	public Boolean getFavorito () {
+		return this.favorito;
+	}
+
+	public void setFavorito(boolean favorito) {
+		this.favorito = favorito;
+	}
+
 	public Proveedor getProveedor() {
 		return proveedor;
 	}
@@ -39,7 +50,6 @@ public class Producto implements Serializable {
 	public void setProveedor(Proveedor proveedor) {
 		this.proveedor = proveedor;
 	}
-
 
 
 	public Integer getIdProducto() {
@@ -82,18 +92,5 @@ public class Producto implements Serializable {
 		this.stock = stock;
 	}
 
-	public boolean isFavorito() {
-		return favorito;
-	}
-
-	public void setFavorito(boolean favorito) {
-		this.favorito = favorito;
-	}
-
-	public boolean getFavorito() {
-		// TODO Auto-generated method stub
-		return false;
 
 	}
-
-}
