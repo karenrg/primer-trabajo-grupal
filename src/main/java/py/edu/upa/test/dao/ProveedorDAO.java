@@ -19,22 +19,6 @@ public class ProveedorDAO {
 	@PersistenceContext
 	EntityManager entityManager;
 	
-//	@SuppressWarnings("unchecked")
-//	public List<Proveedor> findWithFilter(String filter) {
-//
-//		Session session = (Session) entityManager.getDelegate();
-//		Criteria criteria = session.createCriteria(Proveedor.class);
-//		
-//		criteria.add(Restrictions.and(
-//				Restrictions.ilike("description", filter),
-//				Restrictions.or(
-//						Restrictions.eq("deleted", false),
-//						Restrictions.isNull("deleted")
-//				)));
-//		
-//		return criteria.list();
-
-	
 	
 	@SuppressWarnings("unchecked")
 	public List<Proveedor> find() {
@@ -42,10 +26,7 @@ public class ProveedorDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Proveedor.class);
 		
-//		criteria.add(Restrictions.or(
-//				Restrictions.eq("deleted", false),
-//				Restrictions.isNull("deleted")));
-//		
+	
 		return criteria.list();
 
 	}
@@ -90,27 +71,5 @@ public class ProveedorDAO {
 		return criteria.list();
 	}
 
-//	@SuppressWarnings("unchecked")
-//	public List<Proveedor> findWithPagination(Integer page, Integer size) {
-//		
-//		//Calcular inicio
-//		int registroInicio = 0;
-//		registroInicio = (page - 1)* size;		
-//
-//		Session session = (Session) entityManager.getDelegate();
-//		Criteria criteria = session.createCriteria(Proveedor.class);
-//				
-////		criteria.add(
-////				Restrictions.or(
-////						Restrictions.eq("deleted", false),
-////						Restrictions.isNull("deleted")));
-//		
-//		//Asignar Registro de inicio
-//		criteria.setFirstResult(registroInicio);
-//		//Asignar Tamaño de Página
-//		criteria.setMaxResults(size);
-//		//Retornar lista
-//		return criteria.list();
-//	}
 
 	}

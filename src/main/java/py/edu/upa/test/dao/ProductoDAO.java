@@ -26,9 +26,7 @@ public class ProductoDAO {
 		
 		criteria.add(Restrictions.and(
 				Restrictions.ilike("description", filter)
-//				Restrictions.or(
-//						Restrictions.eq("deleted", false),
-//						Restrictions.isNull("deleted")
+
 				));
 		
 		return criteria.list();
@@ -41,9 +39,6 @@ public class ProductoDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Producto.class);
 		
-//		criteria.add(Restrictions.or(
-//				Restrictions.eq("deleted", false),
-//				Restrictions.isNull("deleted")));
 		
 		return criteria.list();
 
@@ -60,20 +55,7 @@ public class ProductoDAO {
 		return (Producto) criteria.uniqueResult();
 
 	}
-//	@SuppressWarnings("unchecked")
-//	public List<Producto> getProductoByProveedor(Integer idProveedor) {
-//	Session session = (Session) entityManager.getDelegate();
-//	Criteria criteria = session.createCriteria(Producto.class);
-//	criteria.createAlias("proveedor", "proveedor");
-//	criteria.add(Restrictions.and(
-//    Restrictions.eq("proveedor.id_proveedor", idProveedor),
-//	Restrictions.or(
-//	Restrictions.eq("deleted", false),
-//	Restrictions.isNull("deleted")
-//	)));
-//	return criteria.list();
-//	}
-//	
+
 	public void insert(Producto t){
 		entityManager.persist(t);
 	}
@@ -101,19 +83,16 @@ public class ProductoDAO {
 		
 		criteria.add(Restrictions.and(
 				Restrictions.eq("proveedor.id_proveedor", id)));
-//				Restrictions.or(
-//						Restrictions.eq("deleted", false),
-//						Restrictions.isNull("deleted")))
 
 		
 		return (List<Producto>) criteria.list();
 	}
 	
-	//getPaginatedTasks(page, size)
+	//getPaginatedProductos(page, size)
 	
 	/**
-	 * @param id_type
-	 * @return lista de tareas
+	 * @param id_proveedor
+	 * @return lista de productos
 	 */
 	
 	public void delete(Integer id){

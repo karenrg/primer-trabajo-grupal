@@ -16,14 +16,14 @@ import javax.ws.rs.core.Response;
 import py.edu.upa.test.business.ProductoBC;
 import py.edu.upa.test.entity.Producto;
 
-@Path("Productos")
+@Path("productos")
 @RequestScoped
 public class ProductoService {
 
 	@Inject
 	private ProductoBC bc;
 
-//  http://localhost:8080/rest/tasks
+//  http://localhost:8080/rest/productos
 	@GET
     @Produces("application/json")
 	public Response getAll() {
@@ -37,7 +37,7 @@ public class ProductoService {
 		}
 	}
 	
-//  http://localhost:8080/rest/tasks
+//  http://localhost:8080/rest/productos
 	@POST
     @Consumes({"application/json"})
     @Produces({"application/json"})
@@ -55,9 +55,9 @@ public class ProductoService {
 
 //	http://localhost:8080/rest/tasks/1
     @GET
-    @Path("/{id: \\d+}")
+    @Path("/{id_producto: \\d+}")
     @Produces({"application/json"})
-    public Response get(@PathParam("id") Integer id) {
+    public Response get(@PathParam("id_producto") Integer id) {
     	try {
 			return Response.ok().entity(bc.findById(id)).build();
 		} catch (Exception e) {
@@ -68,12 +68,12 @@ public class ProductoService {
 		}
     }
 
-//    http://localhost:8080/rest/tasks/1
+//    http://localhost:8080/rest/productos/1
     @PUT
-    @Path("/{id: \\d+}")
+    @Path("/{id_producto: \\d+}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response update(@PathParam("id") Integer id, Producto t) {
+    public Response update(@PathParam("id_producto") Integer id, Producto t) {
     	try {
     		bc.update(id,t);
 			return Response.ok().entity("OK").build();
@@ -86,9 +86,9 @@ public class ProductoService {
     }
 
     @DELETE
-    @Path("/{id: \\d+}")
+    @Path("/{id_producto: \\d+}")
     @Produces({"application/json"})
-    public Response delete(@PathParam("id") Integer id) {
+    public Response delete(@PathParam("id_producto") Integer id) {
     	try {
     		bc.delete(id);
 			return Response.ok().entity("OK").build();
@@ -116,9 +116,9 @@ public class ProductoService {
     }
     
     @GET
-    @Path("/bytype")
+    @Path("/byproveedor")
     @Produces({"application/json"})
-    public Response getByType (@QueryParam("id_type") Integer id_proveedor) {
+    public Response getByProveedor (@QueryParam("id_proveedor") Integer id_proveedor) {
     try {
     	return Response.ok().entity(bc.getProductoByProveedor(id_proveedor)).build();
     	} catch (Exception e) {
@@ -133,7 +133,7 @@ public class ProductoService {
    @Produces({"application/json"})
    public Response getWithPagination (@QueryParam("page") Integer page, @QueryParam("size") Integer size) {
    	try { 
-			return Response.ok().entity(bc.getPaginatedTasks(page, size)).build();
+			return Response.ok().entity(bc.getPaginatedProductos(page, size)).build();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)

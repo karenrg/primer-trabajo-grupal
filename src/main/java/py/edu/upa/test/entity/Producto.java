@@ -14,6 +14,7 @@ public class Producto implements Serializable {
 	
 	@Column(name="id_producto")
 	private Integer idProducto;
+	
 
 	private String nombre;
 
@@ -32,9 +33,6 @@ public class Producto implements Serializable {
 	@JoinColumn(name="id_proveedor")
 	Proveedor proveedor;
 
-//	public boolean getFavorito() {
-//		return favorito;
-//	}
 	public Boolean getFavorito () {
 		return this.favorito;
 	}

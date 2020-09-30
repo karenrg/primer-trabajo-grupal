@@ -23,7 +23,7 @@ public class ProveedorService {
 	@Inject
 	private ProveedorBC bc;
 
-//  http://localhost:8080/rest/tasks
+//  http://localhost:8080/rest/proveedores
 	@GET
     @Produces("application/json")
 	public Response getAll() {
@@ -53,11 +53,11 @@ public class ProveedorService {
 		}
 	}
 
-//	http://localhost:8080/rest/tasks/1
+//	http://localhost:8080/rest/proveedores/1
     @GET
-    @Path("/{id: \\d+}")
+    @Path("/{id_proveedor: \\d+}")
     @Produces({"application/json"})
-    public Response get(@PathParam("id") Integer id) {
+    public Response get(@PathParam("id_proveedor") Integer id) {
     	try {
 			return Response.ok().entity(bc.findById(id)).build();
 		} catch (Exception e) {
@@ -68,12 +68,12 @@ public class ProveedorService {
 		}
     }
 
-//    http://localhost:8080/rest/tasks/1
+//    http://localhost:8080/rest/proveedores/1
     @PUT
-    @Path("/{id: \\d+}")
+    @Path("/{id_proveedor: \\d+}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response update(@PathParam("id") Integer id, Proveedor t) {
+    public Response update(@PathParam("id_proveedor") Integer id, Proveedor t) {
     	try {
     		bc.update(id,t);
 			return Response.ok().entity("OK").build();
@@ -86,9 +86,9 @@ public class ProveedorService {
     }
 
     @DELETE
-    @Path("/{id: \\d+}")
+    @Path("/{id_proveedor: \\d+}")
     @Produces({"application/json"})
-    public Response delete(@PathParam("id") Integer id) {
+    public Response delete(@PathParam("id_proveedor") Integer id) {
     	try {
     		bc.delete(id);
 			return Response.ok().entity("OK").build();
@@ -100,7 +100,7 @@ public class ProveedorService {
 		}
     }
     
-//    http://localhost:8080/rest/tasks/prueba?filter=xx
+//    http://localhost:8080/rest/proveedores/prueba?filter=xx
     @GET
     @Path("/pruebas")
     @Produces({"application/json"})

@@ -39,12 +39,12 @@ public class ProductoBC {
 	public List<Producto> getWithFilter(String filter) {
 		return dao.findWithFilter(filter);
 	}
-	//obtener tarea por tipo
+	//obtener producto por proveedor
 	public List<Producto> getProductoByProveedor(Integer id) {
 		return dao.getProductoByProveedor(id);
 	}
 	//Paginación
-		public List<Producto> getPaginatedTasks(Integer page, Integer size){
+		public List<Producto> getPaginatedProductos(Integer page, Integer size){
 			return dao.findWithPagination(page, size);	
 }
 }
