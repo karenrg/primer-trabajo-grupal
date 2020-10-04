@@ -21,6 +21,8 @@ public class Producto implements Serializable {
 	private Integer precio;
 	
 	private String descripcion;
+	
+	private String url;
 
 	private Integer stock;
 	
@@ -32,6 +34,15 @@ public class Producto implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_proveedor")
 	Proveedor proveedor;
+
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 	public Boolean getFavorito () {
 		return this.favorito;

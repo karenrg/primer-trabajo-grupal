@@ -67,6 +67,7 @@ public class ProductoDAO {
 		t.setDescripcion(producto.getDescripcion());
 		t.setStock(producto.getStock());
 		t.setFavorito(producto.getFavorito());
+		t.setUrl(producto.getUrl());
 		entityManager.merge(t);
 	}
 	
