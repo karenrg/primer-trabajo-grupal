@@ -55,9 +55,9 @@ public class ProveedorService {
 
 //	http://localhost:8080/rest/proveedores/1
     @GET
-    @Path("/{id_proveedor: \\d+}")
+    @Path("/{idProveedor: \\d+}")
     @Produces({"application/json"})
-    public Response get(@PathParam("id_proveedor") Integer id) {
+    public Response get(@PathParam("idProveedor") Integer id) {
     	try {
 			return Response.ok().entity(bc.findById(id)).build();
 		} catch (Exception e) {
@@ -70,10 +70,10 @@ public class ProveedorService {
 
 //    http://localhost:8080/rest/proveedores/1
     @PUT
-    @Path("/{id_proveedor: \\d+}")
+    @Path("/{idProveedor: \\d+}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response update(@PathParam("id_proveedor") Integer id, Proveedor t) {
+    public Response update(@PathParam("idProveedor") Integer id, Proveedor t) {
     	try {
     		bc.update(id,t);
 			return Response.ok().entity("OK").build();
@@ -86,9 +86,9 @@ public class ProveedorService {
     }
 
     @DELETE
-    @Path("/{id_proveedor: \\d+}")
+    @Path("/{idProveedor: \\d+}")
     @Produces({"application/json"})
-    public Response delete(@PathParam("id_proveedor") Integer id) {
+    public Response delete(@PathParam("idProveedor") Integer id) {
     	try {
     		bc.delete(id);
 			return Response.ok().entity("OK").build();

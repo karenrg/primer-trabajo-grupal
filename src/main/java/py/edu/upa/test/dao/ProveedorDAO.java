@@ -36,7 +36,7 @@ public class ProveedorDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Proveedor.class);
 		
-		criteria.add(Restrictions.eq("id_proveedor", idProveedor));
+		criteria.add(Restrictions.eq("idProveedor", idProveedor));
 		
 		return (Proveedor) criteria.uniqueResult();
 

@@ -60,8 +60,8 @@ public class ProductoDAO {
 		entityManager.persist(t);
 	}
 	
-	public void update(Integer id_producto, Producto producto){
-		Producto t = findById(id_producto);
+	public void update(Integer idProducto, Producto producto){
+		Producto t = findById(idProducto);
 		t.setNombre(producto.getNombre());
 		t.setPrecio(producto.getPrecio());
 		t.setDescripcion(producto.getDescripcion());
@@ -83,7 +83,7 @@ public class ProductoDAO {
 		criteria.createAlias("proveedor", "proveedor");
 		
 		criteria.add(Restrictions.and(
-				Restrictions.eq("proveedor.id_proveedor", id)));
+				Restrictions.eq("proveedor.idProveedor", id)));
 
 		
 		return (List<Producto>) criteria.list();
@@ -92,7 +92,7 @@ public class ProductoDAO {
 	//getPaginatedProductos(page, size)
 	
 	/**
-	 * @param id_proveedor
+	 * @param idProveedor
 	 * @return lista de productos
 	 */
 	

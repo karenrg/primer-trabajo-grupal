@@ -55,9 +55,9 @@ public class ProductoService {
 
 //	http://localhost:8080/rest/tasks/1
     @GET
-    @Path("/{id_producto: \\d+}")
+    @Path("/{idProducto: \\d+}")
     @Produces({"application/json"})
-    public Response get(@PathParam("id_producto") Integer id) {
+    public Response get(@PathParam("idProducto") Integer id) {
     	try {
 			return Response.ok().entity(bc.findById(id)).build();
 		} catch (Exception e) {
@@ -70,10 +70,10 @@ public class ProductoService {
 
 //    http://localhost:8080/rest/productos/1
     @PUT
-    @Path("/{id_producto: \\d+}")
+    @Path("/{idProducto: \\d+}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response update(@PathParam("id_producto") Integer id, Producto t) {
+    public Response update(@PathParam("idProducto") Integer id, Producto t) {
     	try {
     		bc.update(id,t);
 			return Response.ok().entity("OK").build();
@@ -86,9 +86,9 @@ public class ProductoService {
     }
 
     @DELETE
-    @Path("/{id_producto: \\d+}")
+    @Path("/{idProducto: \\d+}")
     @Produces({"application/json"})
-    public Response delete(@PathParam("id_producto") Integer id) {
+    public Response delete(@PathParam("idProducto") Integer id) {
     	try {
     		bc.delete(id);
 			return Response.ok().entity("OK").build();
@@ -118,9 +118,9 @@ public class ProductoService {
     @GET
     @Path("/byproveedor")
     @Produces({"application/json"})
-    public Response getByProveedor (@QueryParam("id_proveedor") Integer id_proveedor) {
+    public Response getByProveedor (@QueryParam("idProveedor") Integer idProveedor) {
     try {
-    	return Response.ok().entity(bc.getProductoByProveedor(id_proveedor)).build();
+    	return Response.ok().entity(bc.getProductoByProveedor(idProveedor)).build();
     	} catch (Exception e) {
     		e.printStackTrace();
     		return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
