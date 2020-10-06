@@ -56,7 +56,7 @@ public class ProveedorDAO {
 	
 	public void delete(Integer id){
 		Proveedor t = findById(id);
-		entityManager.merge(t);
+		entityManager.remove(t);
 	}
 
 
